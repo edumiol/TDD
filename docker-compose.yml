@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  tdd_basics:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: 'tdd_basics'
+    volumes:
+      - "./:/usr/src/test-training"
+    ports:
+      - 8080:8888
+    entrypoint: 'php -S 0.0.0.0:8888'
+

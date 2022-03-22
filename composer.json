@@ -1,0 +1,13 @@
+{
+    "autoload": {
+        "psr-4": {
+            "App\\": "app"
+        }
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit test --colors=always --testdox"
+    },
+    "require": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
