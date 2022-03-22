@@ -5,46 +5,52 @@ use App\Calcule;
 
 class CalculeTest extends TestCase {
 
-    protected function setUp() {
-        $this->calcule = new Calcule();
+
+    public static function providerMultiplesOrNumbers(): iterable {
+
+        return [
+                [
+                    'operator' => 'or',
+                    'max_value' => 1000,
+                    'first_number' => 3,
+                    'end_number' => 5,
+                    'expected_result' => 233168
+                ],
+                [
+                    'operator' => 'and',
+                    'max_value' => 1000,
+                    'first_number' => 3,
+                    'end_number' => 5,
+                    'expected_result' => 33165
+                ],
+                [
+                    'operator' => 'or',
+                    'max_value' => 1000,
+                    'first_number' => 3,
+                    'end_number' => 5,
+                    'expected_result' => 33173,
+                    'next_number' => 7,
+                    'next_operator' => 'and'
+                ],
+        ];
     }
 
-    public function testSumMultiplesOr() {
+    /**
+     * @dataProvider providerMultiplesOrNumbers
+     */
+    public function testSumMultiplesOr(string $operator, int $maxNumber, int $firstNumber, int $endNumber, int $expectedResult, int $thirdNumber = null, string $nextOperator = null) {
 
+        $calcule = new Calcule($maxNumber);
+        $sum = $calcule->multipleOr($operator,$firstNumber,$endNumber,$thirdNumber, $nextOperator);
+        $this->assertEquals($expectedResult, $sum);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testValidateNumber() {
         $calcule = new Calcule(10);
-        $sum = $calcule->multipleOr(3,5);
-
-        $expectedResult = 12;
-
-        $this->asserEquals($expectedResult, $sum);
-
-
-
+        $this->expectException(\InvalidArgumentException::class);
+        $calcule->validateNumber(1,2, -10);
     }
-
-
-
-
-
-
-
-//    public function testSumMultiplesThreeOrFive() {
-//        $this->assertEquals($this->calcule->multiplesThreeOrFive(), 233168);
-//    }
-//
-//    public function testSumMultiplesThreeAndFive() {
-//        $this->assertEquals($this->calcule->multiplesThreeAndFive(), 33165);
-//    }
-//
-//    public function testSumMultiplesThreeOrFiveAndSeven() {
-//        $this->assertEquals($this->calcule->multiplesThreeOrFiveAndSeven(), 33173);
-//    }
-//
-//    /**
-//     * @throws Exception
-//     */
-//    public function testException() {
-//        $this->expectException(Exception::class);
-//        $this->calcule->throwException();
-//    }
 }
