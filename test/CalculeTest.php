@@ -6,6 +6,10 @@ use App\Calcule;
 class CalculeTest extends TestCase {
 
 
+    /**
+     * @return array<array{operator:string, max_value:int, first_number: int, end_number: int, expected_result: int}>
+     */
+
     public static function providerMultiplesOrNumbers(): iterable {
 
         return [
@@ -38,7 +42,7 @@ class CalculeTest extends TestCase {
     /**
      * @dataProvider providerMultiplesOrNumbers
      */
-    public function testSumMultiplesOr(string $operator, int $maxNumber, int $firstNumber, int $endNumber, int $expectedResult, int $thirdNumber = null, string $nextOperator = null) {
+    public function testSumMultiplesOr(string $operator, int $maxNumber, int $firstNumber, int $endNumber, int $expectedResult, int $thirdNumber = null, string $nextOperator = null): void {
 
         $calcule = new Calcule($maxNumber);
         $sum = $calcule->multipleOr($operator,$firstNumber,$endNumber,$thirdNumber, $nextOperator);
@@ -48,7 +52,7 @@ class CalculeTest extends TestCase {
     /**
      * @throws Exception
      */
-    public function testValidateNumber() {
+    public function testValidateNumber(): void {
         $calcule = new Calcule(10);
         $this->expectException(\InvalidArgumentException::class);
         $calcule->validateNumber(1,2, -10);

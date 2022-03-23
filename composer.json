@@ -5,9 +5,13 @@
         }
     },
     "scripts": {
-        "test": "./vendor/bin/phpunit test --colors=always --testdox"
+        "test": "./vendor/bin/phpunit test --colors=always --testdox",
+        "php-cs-fixer" : "./vendor/bin/php-cs-fixer fix src",
+        "phpstan" : "./vendor/bin/phpstan analyse --level max src tests"
     },
     "require": {
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "phpstan/phpstan": "^1.4",
+        "friendsofphp/php-cs-fixer": "^3.8"
     }
 }
