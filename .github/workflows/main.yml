@@ -14,16 +14,16 @@ jobs:
         run: docker-compose up -d --build
 
       - name: Install dependencies
-        run: docker-compose exec -T tdd_basic composer install
+        run: docker-compose exec -T tdd_basics composer install
 
       - name: Run PHPCS-Fixer
-        run: docker-compose exec -T tdd_basic composer php-cs-fixer
+        run: docker-compose exec -T tdd_basics composer php-cs-fixer
 
       - name: Run PHPStam
-        run: docker-compose exec -T tdd_basic composer phpstan
+        run: docker-compose exec -T tdd_basics composer phpstan
 
       - name: Run PHPUnit Tests
-        run: docker-compose exec -T tdd_basic composer test
+        run: docker-compose exec -T tdd_basics composer test
 
       - name: Down Container
         run: docker-compose down
