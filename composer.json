@@ -6,8 +6,8 @@
     },
     "scripts": {
         "test": "./vendor/bin/phpunit test --colors=always --testdox",
-        "php-cs-fixer" : "./vendor/bin/php-cs-fixer fix src",
-        "phpstan" : "./vendor/bin/phpstan analyse --level max src tests"
+        "php-cs-fixer" : "./vendor/bin/php-cs-fixer fix app",
+        "phpstan" : "./vendor/bin/phpstan analyse --level max test"
     },
     "require": {
         "phpunit/phpunit": "^9.5",
