@@ -7,7 +7,7 @@ use App\Contracts\NumberManagerInterface;
 class NumbersManager implements NumberManagerInterface
 {
 
-    public function splitNumber(int $number): array
+    public function splitNumber(int|string $number): array
     {
         return str_split($number);
     }

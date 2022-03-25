@@ -2,7 +2,7 @@
 
 namespace App;
 
-class Calcule  {
+class Calculator  {
 
     private int $endValue;
 
@@ -39,7 +39,7 @@ class Calcule  {
      * @param array{start: int, end: int, next: ?int, operator: string, next_operator: ?string} $params
      * @return array<int>
      */
-    private function multiplesOf(array $numbers, array $params): array
+    public function multiplesOf(array $numbers, array $params): array
     {
         $multiples = [];
         foreach ($numbers as $number) {
@@ -71,7 +71,7 @@ class Calcule  {
      * @param array<int> $numbers
      * @return int
      */
-    private function multiplesSum(array $numbers): int
+    public function multiplesSum(array $numbers): int
     {
         return array_sum($numbers);
     }

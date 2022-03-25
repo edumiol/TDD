@@ -7,7 +7,7 @@ use InvalidArgumentException;
 
 class HappyNumber
 {
-    protected NumberManagerInterface $numberManager;
+    public NumberManagerInterface $numberManager;
     public function __construct(NumberManagerInterface $numberManager)
     {
         $this->numberManager = $numberManager;
