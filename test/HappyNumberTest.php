@@ -9,7 +9,7 @@ use App\Contracts\NumberManagerInterface;
 class HappyNumberTest extends TestCase
 {
 
-    public function testHappyNumber(): void {
+    public function testShouldHappyNumber(): void {
         $happyNumbers = [1, 7, 10, 13, 19, 23, 28, 31, 32, 44, 49];
         $happyNumber = new HappyNumber(new NumbersManager());
         foreach ($happyNumbers as $number) {
@@ -17,7 +17,7 @@ class HappyNumberTest extends TestCase
         }
     }
 
-    public function testSadNumber(): void {
+    public function testShouldSadNumber(): void {
         $happyNumbers = [2, 6, 11, 14, 20, 24, 29, 33, 34, 45, 50];
         $happyNumber = new HappyNumber(new NumbersManager());
         foreach ($happyNumbers as $number) {
