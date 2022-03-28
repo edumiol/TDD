@@ -11,7 +11,7 @@ class Calculator  {
         $this->endValue = $endValue;
     }
 
-    public function multipleOr(string $operator, int $first, int $second, int $third = null, string $nextOperator = null): int|float
+    public function multiple(string $operator, int $first, int $second, int $third = null, string $nextOperator = null): int|float
     {
         $this->validateNumber($first, $second, $third ?? 0);
         $startValue = 0;

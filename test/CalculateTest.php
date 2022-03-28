@@ -3,7 +3,7 @@
 use PHPUnit\Framework\TestCase;
 use App\Calculator;
 
-class CalculeTest extends TestCase {
+class CalculateTest extends TestCase {
 
 
     /**
@@ -44,8 +44,8 @@ class CalculeTest extends TestCase {
      */
     public function testSumMultiplesOr(string $operator, int $maxNumber, int $firstNumber, int $endNumber, int $expectedResult, int $thirdNumber = null, string $nextOperator = null): void {
 
-        $calcule = new Calculator($maxNumber);
-        $sum = $calcule->multipleOr($operator,$firstNumber,$endNumber,$thirdNumber, $nextOperator);
+        $calculator = new Calculator($maxNumber);
+        $sum = $calculator->multiple($operator,$firstNumber,$endNumber,$thirdNumber, $nextOperator);
         $this->assertEquals($expectedResult, $sum);
     }
 
@@ -53,8 +53,8 @@ class CalculeTest extends TestCase {
      * @throws Exception
      */
     public function testValidateNumber(): void {
-        $calcule = new Calculator(10);
+        $calculator = new Calculator(10);
         $this->expectException(\InvalidArgumentException::class);
-        $calcule->validateNumber(1,2, -10);
+        $calculator->validateNumber(1,2, -10);
     }
 }

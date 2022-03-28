@@ -43,32 +43,32 @@ class WordsInNumbersTest extends TestCase
     public function testShouldBringUppercaseAlphabet(): void {
         $wordsNumbers = new WordsInNumbers();
         $expectedResult = [
-            27 => 'A',
-            28 => 'B',
-            29 => 'C',
-            30 => 'D',
-            31 => 'E',
-            32 => 'F',
-            33 => 'G',
-            34 => 'H',
-            35 => 'I',
-            36 => 'J',
-            37 => 'K',
-            38 => 'L',
-            39 => 'M',
-            40 => 'N',
-            41 => 'O',
-            42 => 'P',
-            43 => 'Q',
-            44 => 'R',
-            45 => 'S',
-            46 => 'T',
-            47 => 'U',
-            48 => 'V',
-            49 => 'W',
-            50 => 'X',
-            51 => 'Y',
-            52 => 'Z'
+                27 => 'A',
+                28 => 'B',
+                29 => 'C',
+                30 => 'D',
+                31 => 'E',
+                32 => 'F',
+                33 => 'G',
+                34 => 'H',
+                35 => 'I',
+                36 => 'J',
+                37 => 'K',
+                38 => 'L',
+                39 => 'M',
+                40 => 'N',
+                41 => 'O',
+                42 => 'P',
+                43 => 'Q',
+                44 => 'R',
+                45 => 'S',
+                46 => 'T',
+                47 => 'U',
+                48 => 'V',
+                49 => 'W',
+                50 => 'X',
+                51 => 'Y',
+                52 => 'Z'
         ];
 
         $this->assertEquals($expectedResult, $wordsNumbers->getUppercaseNumbers());
@@ -80,22 +80,37 @@ class WordsInNumbersTest extends TestCase
             [
                 'name' => 'Eduardo',
                 'cousin' => true,
-                'multiple' => 'Feliz'
-            ]
+                'number' => 'Happy',
+                'multiple' => 2028
+            ],
+            [
+                'name' => 'Monica',
+                'cousin' => true,
+                'number' => 'Sad',
+                'multiple' => 1508
+            ],
+            [
+                'name' => 'Fernando',
+                'cousin' => true,
+                'number' => 'Happy',
+                'multiple' => 2520
+            ],
         ];
 
-        $this->assertEquals($expectedResult, $wordsNumbers->getReportName('Eduardo'));
+        foreach ($expectedResult as $expect) {
+            $this->assertEquals($expect, $wordsNumbers->getNameReport($expect['name']));
+        }
     }
 
-    public function testShoudGetSumName(): void {
+    public function testShouldGetSumName(): void {
         $wordsNumbers = new WordsInNumbers();
         $expectedResult = 94;
-        $this->assertEquals($expectedResult, $wordsNumbers->getSumName('Eduardo'));
+        $this->assertEquals($expectedResult, $wordsNumbers->getSumName($wordsNumbers->postSlug('Eduardo')));
     }
 
     public function testShouldInformIfTheNameIsCousin(): void {
         $wordsNumbers = new WordsInNumbers();
-        $isCousin = $wordsNumbers->isNameCousin($wordsNumbers->getSumName('Eduardo'));
+        $isCousin = $wordsNumbers->isNameCousin($wordsNumbers->getSumName($wordsNumbers->postSlug('Eduardo')));
         $this->assertTrue($isCousin);
     }
 }
