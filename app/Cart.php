@@ -4,22 +4,24 @@ namespace App;
 
 use App\services\ServiceCart;
 use App\Utils\TraitWords;
+use App\User;
 
-class Cart extends User
+class Cart
 {
     private array $products;
     private array $item;
+    private User $user;
 
-    public function __construct(string $name, string $cep)
+    public function __construct(User $user)
     {
-        parent::__construct($name, $cep);
+        $this->user = $user;
         $this->item = [];
         $this->products = [];
     }
 
-    public function sumProducts(Cart $cart): float
+    public function sumProducts(): float
     {
-        $service = new ServiceCart($cart);
+        $service = new ServiceCart($this);
         return $service->sum();
     }
 
@@ -77,4 +79,16 @@ class Cart extends User
             }
         }
     }
+
+    public function getUserName(): string
+    {
+        return $this->user->getName();
+    }
+
+    public function getZipCodeUser(): string
+    {
+        return $this->user->getZipCode();
+    }
+
+
 }

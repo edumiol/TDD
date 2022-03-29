@@ -5,11 +5,21 @@ namespace App;
 class User
 {
     private string $name;
-    private string $cep;
+    private string $zipCode;
 
-    public function __construct(string $name, string $cep)
+    public function __construct(string $name, string $zipCode)
     {
         $this->name = $name;
-        $this->cep = $cep;
+        $this->zipCode = $zipCode;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getZipCode(): string
+    {
+        return  $this->zipCode;
     }
 }

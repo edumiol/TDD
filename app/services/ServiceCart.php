@@ -2,8 +2,8 @@
 
 namespace App\services;
 
+use App\CalculatorFreight;
 use App\Cart;
-use App\Utils\TraitWords;
 
 class ServiceCart
 {
@@ -20,6 +20,7 @@ class ServiceCart
         $sumProducts = [];
         $products = $cart->getProducts();
         $items[] = $cart->getItems();
+
         foreach ($products as $product) {
             foreach ($items as $item) {
                 $quantity = $cart->getItem($item, $product);
@@ -27,7 +28,15 @@ class ServiceCart
             }
             $sumProducts[$cart->treatName($product)] = $quantity * $product->getValue();
         }
-        return array_sum($sumProducts);
+
+        $value = array_sum($sumProducts);
+
+        if($value < 100) {
+            $freight = $this->getFreight($cart->getZipCodeUser());
+            return $value + $freight;
+        }
+
+        return $value;
     }
 
     public function validateNumber(int $item, float $value): void
@@ -37,5 +46,10 @@ class ServiceCart
         }
     }
 
+    private function getFreight($zipCode): int|float
+    {
+        $calculatorService = new CalculatorService(new CalculatorFreight());
+        return $calculatorService->calculatorFreight($zipCode);
+    }
 
 }

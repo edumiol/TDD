@@ -4,5 +4,5 @@ namespace App\Contracts;
 
 interface PostalService
 {
-    public function calculatorFreight(string $cep): int|float;
+    public function calculatorFreight(string $zipcode): int|float;
 }
