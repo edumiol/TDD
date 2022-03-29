@@ -1,22 +1,22 @@
 <?php
 
-namespace App\services;
+namespace App;
 
-use App\Cart;
-use App\Utils\TraitWords;
-
-class ServiceCart
+class CalculatorFreight implements Contracts\PostalService
 {
-    private Cart $cart;
 
-    public function __construct(Cart $cart)
+    public function calculatorFreight(string $cep): int|float
     {
-        $this->cart = $cart;
+       $freights = [
+         '06342140' => 40.00,
+         '060110140' => 30.00,
+         '054708452' => 70.00
+       ];
+       return $freights[$cep] ?? 0;
     }
 
-    public function sum(): float
+    public function sumTotalValue(Cart $cart): int|float
     {
-        $cart = $this->cart;
         $sumProducts = [];
         $products = $cart->getProducts();
         $items[] = $cart->getItems();
@@ -36,6 +36,4 @@ class ServiceCart
             throw new \InvalidArgumentException('Item and value cannot be zero.');
         }
     }
-
-
 }

@@ -3,6 +3,7 @@
 namespace App;
 
 use App\services\ServiceCart;
+use App\Utils\TraitWords;
 
 class Cart extends User
 {
@@ -32,17 +33,21 @@ class Cart extends User
 
     public function addProduct(Product $product, int $item): void
     {
+        $traitWords = new TraitWords();
         $this->products[] = $product;
-        if(empty($this->item[$this->treatName($product)])) {
-            $this->item = [$this->treatName($product) => $item];
+        $itemName = $traitWords->postSlug($this->treatName($product));
+        if(empty($this->item[$itemName])) {
+            $this->item[] = [$itemName => $item];
         } else {
-            $this->item[$this->treatName($product)] += $item;
+            $this->item[$itemName] += $item;
         }
     }
 
     public function treatName(Product $product): string|array
     {
-        return str_replace(" ", "_", strtolower($product->getName()));
+        $traitWords = new TraitWords();
+        $productName = $traitWords->postSlug($product->getName());
+        return strtolower($productName);
     }
 
     public function getItems(): array
@@ -50,8 +55,26 @@ class Cart extends User
         return $this->item;
     }
 
-    public function getItem(mixed $item, mixed $product): mixed
+    public function getItem(mixed $items, mixed $product): mixed
     {
-        return $item[str_replace(" ", "_", strtolower($product->getName()))];
+        $productName = $this->treatName($product);
+        $quantity = 0;
+        foreach ($items as $item) {
+            if(isset($item[$productName])) {
+                $quantity += $item[$productName];
+            }
+        }
+        return $quantity;
+    }
+
+    public function removeProduct(Product $product, int $quantity): void
+    {
+        $traitWords = new TraitWords();
+        $productName = $traitWords->postSlug($product->getName());
+        foreach ($this->getItems() as $idx => $item) {
+            if(isset($item[$productName])) {
+                $this->item[$idx][$productName] = $item[$productName] - $quantity;
+            }
+        }
     }
 }

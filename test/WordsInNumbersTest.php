@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Utils\TraitWords;
 use App\WordsInNumbers;
 use PHPUnit\Framework\TestCase;
 
@@ -103,14 +104,16 @@ class WordsInNumbersTest extends TestCase
     }
 
     public function testShouldGetSumName(): void {
+        $traitWords = new TraitWords();
         $wordsNumbers = new WordsInNumbers();
         $expectedResult = 94;
-        $this->assertEquals($expectedResult, $wordsNumbers->getSumName($wordsNumbers->postSlug('Eduardo')));
+        $this->assertEquals($expectedResult, $wordsNumbers->getSumName($traitWords->postSlug('Eduardo')));
     }
 
     public function testShouldInformIfTheNameIsCousin(): void {
+        $traitWords = new TraitWords();
         $wordsNumbers = new WordsInNumbers();
-        $isCousin = $wordsNumbers->isNameCousin($wordsNumbers->getSumName($wordsNumbers->postSlug('Eduardo')));
+        $isCousin = $wordsNumbers->isNameCousin($wordsNumbers->getSumName($traitWords->postSlug('Eduardo')));
         $this->assertTrue($isCousin);
     }
 }
