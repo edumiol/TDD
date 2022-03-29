@@ -31,7 +31,7 @@ class ServiceCart
 
         $value = array_sum($sumProducts);
 
-        if($value < 100) {
+        if ($value < 100) {
             $freight = $this->getFreight($cart->getZipCodeUser());
             return $value + $freight;
         }
@@ -41,7 +41,7 @@ class ServiceCart
 
     public function validateNumber(int $item, float $value): void
     {
-        if($item <= 0 || $value <= 0) {
+        if ($item <= 0 || $value <= 0) {
             throw new \InvalidArgumentException('Item and value cannot be zero.');
         }
     }
@@ -51,5 +51,4 @@ class ServiceCart
         $calculatorService = new CalculatorService(new CalculatorFreight());
         return $calculatorService->calculatorFreight($zipCode);
     }
-
 }

@@ -2,8 +2,8 @@
 
 namespace App;
 
-class Calculator  {
-
+class Calculator
+{
     private int $endValue;
 
     public function __construct(int $endValue)
@@ -15,7 +15,7 @@ class Calculator  {
     {
         $this->validateNumber($first, $second, $third ?? 0);
         $startValue = 0;
-        $numbers =  $this->createRange($startValue,$this->endValue);
+        $numbers =  $this->createRange($startValue, $this->endValue);
         $params = ['start' => $first, 'end' => $second, 'next' => $third, 'operator' => $operator, 'next_operator' => $nextOperator];
         $multiples = $this->multiplesOf($numbers, $params);
 
@@ -43,7 +43,7 @@ class Calculator  {
     {
         $multiples = [];
         foreach ($numbers as $number) {
-            if(empty($params['next'])) {
+            if (empty($params['next'])) {
                 switch ($params['operator']) {
                     case 'or':
                         $multiples[] = ($number % $params['start'] == 0 || $number % $params['end'] == 0) ? $number : '';
@@ -78,9 +78,8 @@ class Calculator  {
 
     public function validateNumber(int $first, int $second, int $third): void
     {
-        if($first < 0 || $second < 0 || $third < 0) {
+        if ($first < 0 || $second < 0 || $third < 0) {
             throw new \InvalidArgumentException('First and Second number most be greater than zero.');
         }
     }
-
 }

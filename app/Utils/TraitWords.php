@@ -4,7 +4,8 @@ namespace App\Utils;
 
 class TraitWords
 {
-    public function removeAccent(string $str): string {
+    public function removeAccent(string $str): string
+    {
         $letterWithAccent = [
             'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ð', 'Ñ', 'Ò', 'Ó',
             'Ô', 'Õ', 'Ö', 'Ø', 'Ù', 'Ú', 'Û', 'Ü', 'Ý', 'ß', 'à', 'á', 'â', 'ã', 'ä', 'å', 'æ', 'ç', 'è', 'é',
@@ -35,9 +36,13 @@ class TraitWords
         return str_replace($letterWithAccent, $letterWithoutAccent, $str);
     }
 
-    public function postSlug(string $str): string {
-        return preg_replace(array('/[^a-zA-Z]/', '/[ -]+/', '/^-|-$/'),
-            array('', '', '',"'"), $this->removeAccent($str));
+    public function postSlug(string $str): string
+    {
+        return preg_replace(
+            array('/[^a-zA-Z]/', '/[ -]+/', '/^-|-$/'),
+            array('', '', '',"'"),
+            $this->removeAccent($str)
+        );
     }
 
     public function debug(string|array $data, bool $active = true, bool $stop = false): void

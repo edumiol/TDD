@@ -7,7 +7,6 @@ use App\Utils\TraitWords;
 
 class WordsInNumbers
 {
-
     public function getLowercaseNumbers(): array
     {
         return array_combine(range(1, 26), range('a', 'z'));
@@ -29,7 +28,7 @@ class WordsInNumbers
         $number = $happyNumber->isHappyNumber($sumName);
 
         $calculator = new Calculator($sumName);
-        $multiple = $calculator->multiple('or',3,5);
+        $multiple = $calculator->multiple('or', 3, 5);
 
         return [
             'name' => $name,
@@ -42,9 +41,9 @@ class WordsInNumbers
     public function isNameCousin(int $number): bool
     {
         $cousins = [];
-        for($i = 1; $i <= $number; $i++) {
+        for ($i = 1; $i <= $number; $i++) {
             $dividers = 0;
-            for($j = $i; $j >= 1; $j--) {
+            for ($j = $i; $j >= 1; $j--) {
                 if (($i % $j) == 0) {
                     $dividers++;
                 }
@@ -61,7 +60,6 @@ class WordsInNumbers
         $sumNumber = [];
         list($alphabetNumberUpper, $alphabetNumberLower) = $this->getNameNumber($name);
         return array_sum(array_filter(array_merge_recursive($alphabetNumberUpper, $alphabetNumberLower, $sumNumber)));
-
     }
 
     public function getNameNumber(string $name): array
@@ -71,11 +69,8 @@ class WordsInNumbers
         $number = new HappyNumber(new NumbersManager());
 
         $data = $number->numberManager->splitNumber($name);
-        $alphabetNumberUpper = array_map(fn($value): int => array_search($value, $alphabetUpper), $data);
-        $alphabetNumberLower = array_map(fn($value): int => array_search($value, $alphabetLower), $data);
+        $alphabetNumberUpper = array_map(fn ($value): int => array_search($value, $alphabetUpper), $data);
+        $alphabetNumberLower = array_map(fn ($value): int => array_search($value, $alphabetLower), $data);
         return array($alphabetNumberUpper, $alphabetNumberLower);
     }
-
-
-
 }

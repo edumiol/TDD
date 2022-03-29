@@ -33,7 +33,4 @@ class Product
     {
         return ['name' => $this->name, 'value' => $this->value];
     }
-
-
-
 }

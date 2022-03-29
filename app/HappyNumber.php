@@ -20,13 +20,16 @@ class HappyNumber
         $squareNumbers = $this->numberManager->getSquareFromNumbers($numbers);
         $sumOfSquareNumbers = array_sum($squareNumbers);
 
-        if (in_array($sumOfSquareNumbers, $readyPass)) return false;
-        if ($sumOfSquareNumbers === 1) return true;
+        if (in_array($sumOfSquareNumbers, $readyPass)) {
+            return false;
+        }
+        if ($sumOfSquareNumbers === 1) {
+            return true;
+        }
 
         $readyPass[] = $sumOfSquareNumbers;
 
-       return $this->isHappyNumber($sumOfSquareNumbers, $readyPass);
-
+        return $this->isHappyNumber($sumOfSquareNumbers, $readyPass);
     }
 
     public function validateNumberNegative(int $number): void
@@ -35,5 +38,4 @@ class HappyNumber
             throw new InvalidArgumentException();
         }
     }
-
 }

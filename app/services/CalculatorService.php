@@ -7,7 +7,6 @@ use App\Contracts\PostalService;
 
 class CalculatorService
 {
-
     public PostalService $postalService;
 
     public function __construct(PostalService $postalService)
@@ -24,5 +23,4 @@ class CalculatorService
     {
         return $cart->sumProducts();
     }
-
 }

@@ -38,7 +38,7 @@ class Cart
         $traitWords = new TraitWords();
         $this->products[] = $product;
         $itemName = $traitWords->postSlug($this->treatName($product));
-        if(empty($this->item[$itemName])) {
+        if (empty($this->item[$itemName])) {
             $this->item[] = [$itemName => $item];
         } else {
             $this->item[$itemName] += $item;
@@ -62,7 +62,7 @@ class Cart
         $productName = $this->treatName($product);
         $quantity = 0;
         foreach ($items as $item) {
-            if(isset($item[$productName])) {
+            if (isset($item[$productName])) {
                 $quantity += $item[$productName];
             }
         }
@@ -74,7 +74,7 @@ class Cart
         $traitWords = new TraitWords();
         $productName = $traitWords->postSlug($product->getName());
         foreach ($this->getItems() as $idx => $item) {
-            if(isset($item[$productName])) {
+            if (isset($item[$productName])) {
                 $this->item[$idx][$productName] = $item[$productName] - $quantity;
             }
         }
@@ -89,6 +89,4 @@ class Cart
     {
         return $this->user->getZipCode();
     }
-
-
 }
