@@ -18,7 +18,7 @@ class CartTest extends TestCase
         $cart = new Cart($user);
         $cart->addProduct($product, 1);
         $this->expectException(\InvalidArgumentException::class);
-        $cart->sumProducts($cart);
+        $cart->sumProducts();
     }
 
     public function testShouldAddNewProducts(): void {
@@ -27,7 +27,7 @@ class CartTest extends TestCase
         $cart = new Cart($user);
         $cart->addProduct($product, 5);
         $exceptedResult = 9000.00;
-        $this->assertEquals($exceptedResult,$cart->sumProducts($cart));
+        $this->assertEquals($exceptedResult,$cart->sumProducts());
     }
 
     public function testShouldAddProductsThatHaveAlreadyBeenAdded(): void {
@@ -38,7 +38,7 @@ class CartTest extends TestCase
         $cart->addProduct($product, 1);
         $cart->addProduct($product, 2);
         $exceptedResult = 14400.00;
-        $this->assertEquals($exceptedResult,$cart->sumProducts($cart));
+        $this->assertEquals($exceptedResult,$cart->sumProducts());
     }
 
     public function testShouldRemoveProduct(): void {
@@ -48,7 +48,7 @@ class CartTest extends TestCase
         $cart->addProduct($product,3);
         $cart->removeProduct($product, 1);
         $exceptedResult = 1000.00;
-        $this->assertEquals($exceptedResult,$cart->sumProducts($cart));
+        $this->assertEquals($exceptedResult,$cart->sumProducts());
     }
 
     public function testShouldAddTwoProductsAtTheSameTime(): void {
@@ -59,7 +59,7 @@ class CartTest extends TestCase
         $cart->addProduct($ukulele,1);
         $cart->addProduct($sneaker,1);
         $exceptedResult = 2300.00;
-        $this->assertEquals($exceptedResult,$cart->sumProducts($cart));
+        $this->assertEquals($exceptedResult,$cart->sumProducts());
     }
 
     public function testShoudZeroQuantityInCart(): void {
@@ -68,6 +68,6 @@ class CartTest extends TestCase
         $cart = new Cart($user);
         $cart->addProduct($product,0);
         $this->expectException(\InvalidArgumentException::class);
-        $cart->sumProducts($cart);
+        $cart->sumProducts();
     }
 }
